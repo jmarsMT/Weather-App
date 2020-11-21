@@ -14,24 +14,28 @@
 </head>
 <body>
   <div class=container>
-    <div class="weather-app">
-      <h1>
+    <div class="my-app-wrapper">
+    <div class="my-app">
+      <div class="overview">
+      <h1 id="city">
         Zurich
       </h1>
       <ul>
-        <li>
-              Friday 5:00
-        </li>    
-        <li>
-              Clear
-        </li>
+        <li id="date"> Friday 5:00 </li>    
+        <li id="w-desc"> Clear</li>
       </ul>
+      </div><!-- overview-->
       <div class="row">
         <div class= "col-6">
+          <div class="clearfix weather-temp">
             <img src="https://ssl.gstatic.com/onebox/weather/64/partly_cloudy.png"
             alt="partly sunny"
+            class="float-left"
             />
-            15 °C | °F
+            <div class="float-left">
+              <strong id="temp">15</strong> <span class="units">°C | <a href="#">°F</a></span>
+            </div><!-- float-left-->
+            </div><!-- clearfix-->
         </div><!-- col6-->
         <div class="col-6">
             <ul>
@@ -39,16 +43,17 @@
                 Precipitation: 0%
               </li>
               <li>
-                Humidity: 63%
+                Humidity: <span id="humidity">63</span> %
               </li>
               <li>
-                Wind: 3KMh
+                Wind: <span id="wind">7</span> Km/h
               </li>
             </ul>
         </div><!-- col6-->
       </div><!-- row-->
-      <a href="" target="_blank">source code</a> by MJ
     </div><!-- my-app -->
+    <a href="" target="_blank">source code</a> by MJ
+    </div><!-- my-app wrapper-->
   </div> <!-- container -->
   <script src="src/app.js"></script> 
 </body>
