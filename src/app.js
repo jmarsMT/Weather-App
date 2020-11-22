@@ -49,10 +49,22 @@ function displayCurrentWeather(response){
     iconElement.setAttribute("src",`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
 }
 
+function search(city) {
+    let apiKey="a22b7ad6acc07bc299f05b8bfe2089f5";
+    let apiUrl=`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
+    console.log(apiUrl)
+    axios.get(apiUrl).then(displayCurrentWeather)
 
-let apiKey="a22b7ad6acc07bc299f05b8bfe2089f5";
-let city="Freienbach";
-let apiUrl=`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
-console.log(apiUrl)
+}
 
-axios.get(apiUrl).then(displayCurrentWeather)
+function handleSubmit(event){
+    event.preventDefault();
+    let cityInputElement=document.querySelector("#city-input")
+    search(cityInputElement.value)
+}
+
+search("Freienbach")<!-- DEFAULT CITY-->
+
+
+let form=document.querySelector("#search-form");
+form.addEventListener("submit", handleSubmit);
