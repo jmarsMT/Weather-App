@@ -37,6 +37,9 @@ function displayCurrentWeather(response){
     let windElement=document.querySelector("#wind");
     let dateElement=document.querySelector("#date");
     let iconElement=document.querySelector("#icon")
+    
+    cTemp = response.data.main.temp;
+    console.log("1 "+cTemp);
     console.log(dateElement);
     console.log(descElement);
     console.log(formatDate(response.data.dt * 1000));
@@ -59,13 +62,38 @@ function search(city) {
 
 function handleSubmit(event){
     event.preventDefault();
-    let cityInputElement=document.querySelector("#city-input")
-    search(cityInputElement.value)
+    let cityInputElement=document.querySelector("#city-input");
+    search(cityInputElement.value);
 }
 
-search("Freienbach")<!-- DEFAULT CITY-->
+function displayFahrenheitTemperature(event) {
+  event.preventDefault();
+  let temperatureElement = document.querySelector("#temp");
+
+  celsiusLink.classList.remove("active");
+  fahrenheitLink.classList.add("active");
+  let fTemp = (cTemp * 9) / 5 + 32;
+  temperatureElement.innerHTML = Math.round(fTemp);
+}
+
+function displayCelsiusTemperature(event) {
+  event.preventDefault();
+  celsiusLink.classList.add("active");
+  fahrenheitLink.classList.remove("active");
+  let temperatureElement = document.querySelector("#temp");
+  temperatureElement.innerHTML = Math.round(cTemp);
+}
+let cTemp = null;
 
 
+let fahrenheitLink = document.querySelector("#fahrenheit");
+fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
+
+let celsiusLink = document.querySelector("#celsius");
+celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 let form=document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
+
+search("Cadro");
+//cTemp=document.querySelector("#temp")
