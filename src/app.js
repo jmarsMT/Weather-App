@@ -14,6 +14,22 @@ function formatDate(timestamp) {
   return `${day} ${formatHours(timestamp)}`;
 }
 
+function formatDay(timestamp) {
+  let date = new Date(timestamp);
+
+  let days = [
+    "Sunday",
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday",
+    "Saturday"
+  ];
+  let day = days[date.getDay()];
+  return `${day}`;
+}
+
 function formatHours(timestamp) {
   let date = new Date(timestamp);
   let hours = date.getHours();
@@ -26,6 +42,12 @@ function formatHours(timestamp) {
   }
 
   return `${hours}:${minutes}`;
+}
+
+function formatHourOnly(timestamp) {
+  let date = new Date(timestamp);
+  let hours = date.getHours();
+  return hours
 }
 
 function displayCurrentWeather(response){
@@ -52,12 +74,12 @@ function displayCurrentWeather(response){
     iconElement.setAttribute("src",`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
 }
 
-function dispalyForecast(response) {
+function displayForecast(response) {
   let forecastElement = document.querySelector("#forecast");
   forecastElement.innerHTML = null;
   let forecast = null;
-
-  for (let index = 0; index < 12; index++) {
+  console.log(response)
+  for (let index = 0; index < 5; index++) {
     forecast = response.data.list[index];
     forecastElement.innerHTML += `<div class="col-2">
       <h3>
@@ -79,6 +101,43 @@ function dispalyForecast(response) {
   }
 }
 
+function displayForecastDays(response) {
+  let forecastDaysElement = document.querySelector("#forecast-days");
+  forecastDaysElement.innerHTML = null;
+  let forecastDays = null;
+  forecast = response.data.list[0]
+  let zeroHour=formatHourOnly(forecast.dt*1000);
+  let firstIndex=0;
+  if (zeroHour<=13){
+      firstIndex=(13-zeroHour)/3;
+  } else {
+      firstIndex=((13-zeroHour)/3)+8;
+  }
+  console.log(response)
+  console.log(zeroHour)
+  console.log(firstIndex)
+  for (let index = firstIndex; index < 40; index+=8) {
+    forecast = response.data.list[index];
+    console.log(forecast);
+    forecastDaysElement.innerHTML += `<div class="col-2">
+      <h3>
+        ${formatDay(forecast.dt * 1000)}
+      </h3>
+      <img
+        src="http://openweathermap.org/img/wn/${
+          forecast.weather[0].icon
+        }@2x.png" class="fCast-Icon"
+      />
+      <div class="weather-forecast-temperature">
+        <strong>
+          ${Math.round(forecast.main.temp_max)}°
+        </strong>
+        ${Math.round(forecast.main.temp_min)}°
+      </div>
+    </div>
+  `;
+  }
+}
 
 
 function search(city) {
@@ -88,7 +147,8 @@ function search(city) {
     axios.get(apiUrl).then(displayCurrentWeather)
     //new API for forecast
     apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
-    axios.get(apiUrl).then(dispalyForecast);
+    axios.get(apiUrl).then(displayForecast);
+    axios.get(apiUrl).then(displayForecastDays);
 
 }
 

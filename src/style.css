@@ -17,12 +17,12 @@ body {
 	background: rgb(238, 174, 202);
 	background: linear-gradient(
 		147deg,
-		rgba(238, 174, 202, 1) 0%,
+		rgb(185, 139, 241) 0%,
 		rgba(238, 240, 242, 1) 100%
 	);
 }
 h1 {
-	color: #858585;
+	color: #4a4a4a;
 	font-size: 24px;
 	font-weight: 100;
 	line-height: 28px;
@@ -70,7 +70,7 @@ li:first-letter {
 h3 {
 	color: #858585;
 	font-size: 14px;
-	font-weight: 100;
+	font-weight: 400;
 	line-height: 18px;
 	text-align: center;
 }
@@ -82,10 +82,23 @@ h3 {
 }
 .weather-forecast-temperature {
 	text-align: center;
-	color: rgb(135, 135, 135);
-	font-size: 13px;
+	color: #858585;
+	font-size: 14px;
 	font-weight: 400;
 	height: auto;
 	line-height: 15px;
-	white-space: nowrap;
+	margin-bottom: 15px;
+}
+h4 {
+	color: #858585;
+	font-weight: 100;
+	line-height: 18px;
+	margin-top: 25px;
+	margin-bottom: 25px;
+}
+.weather-days img {
+	display: block;
+	margin: 0 auto;
+	height: 48px;
+	width: 48px;
 }
