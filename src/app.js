@@ -61,9 +61,7 @@ function displayCurrentWeather(response){
     let iconElement=document.querySelector("#icon")
     
     cTemp = response.data.main.temp;
-    console.log("1 "+cTemp);
-    console.log(dateElement);
-    console.log(descElement);
+
     console.log(formatDate(response.data.dt * 1000));
     temperatureElement.innerHTML=Math.round(response.data.main.temp);
     cityElememt.innerHTML=response.data.name;
@@ -120,7 +118,7 @@ function displayForecastDays(response) {
     forecast = response.data.list[index];
     console.log(forecast);
     forecastDaysElement.innerHTML += `<div class="col-2">
-      <h3>
+      <h3 class="days">
         ${formatDay(forecast.dt * 1000)}
       </h3>
       <img
@@ -129,22 +127,26 @@ function displayForecastDays(response) {
         }@2x.png" class="fCast-Icon"
       />
       <div class="weather-forecast-temperature">
-        <strong>
-          ${Math.round(forecast.main.temp_max)}°
+        <strong>  
+        ${Math.round(forecast.main.temp_max)}°
         </strong>
         ${Math.round(forecast.main.temp_min)}°
+    
       </div>
     </div>
   `;
   }
 }
 
-
+function displayOneCall(response){
+console.log(response)
+}
 function search(city) {
     let apiKey="a22b7ad6acc07bc299f05b8bfe2089f5";
     let apiUrl=`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
     console.log(apiUrl)
     axios.get(apiUrl).then(displayCurrentWeather)
+
     //new API for forecast
     apiUrl = `https://api.openweathermap.org/data/2.5/forecast?q=${city}&appid=${apiKey}&units=metric`;
     axios.get(apiUrl).then(displayForecast);
@@ -160,28 +162,30 @@ function handleSubmit(event){
 
 function displayFahrenheitTemperature(event) {
   event.preventDefault();
+  currentUnit=1;
   let temperatureElement = document.querySelector("#temp");
-
-  celsiusLink.classList.remove("active");
-  fahrenheitLink.classList.add("active");
+  let unitElement = document.querySelector("#unita");
+  console.log(unitElement);
   let fTemp = (cTemp * 9) / 5 + 32;
   temperatureElement.innerHTML = Math.round(fTemp);
+  unitElement.innerHTML= "°F"
 }
 
 function displayCelsiusTemperature(event) {
   event.preventDefault();
-  celsiusLink.classList.add("active");
-  fahrenheitLink.classList.remove("active");
+  currentUnit=0;
+  let unitElement = document.querySelector("#unita");
   let temperatureElement = document.querySelector("#temp");
   temperatureElement.innerHTML = Math.round(cTemp);
+  unitElement.innerHTML= "°C"
 }
 let cTemp = null;
-
-
-let fahrenheitLink = document.querySelector("#fahrenheit");
+let currentUnit=0; /* 0=celsius; 1=fahrenheit
+ */
+let fahrenheitLink = document.querySelector("#btnF");
 fahrenheitLink.addEventListener("click", displayFahrenheitTemperature);
 
-let celsiusLink = document.querySelector("#celsius");
+let celsiusLink = document.querySelector("#btnC");
 celsiusLink.addEventListener("click", displayCelsiusTemperature);
 
 let form=document.querySelector("#search-form");

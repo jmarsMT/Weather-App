@@ -26,10 +26,20 @@
             />
           </div><!-- col-9-->
           <div col-3>
-            <input type="submit" value="Search" />
+            <input type="submit" value="Search" class="btc-Search"/>
           </div><!-- col 3-->
         </div><!-- row-->
       </form>
+      <div class="row">
+          <div class="col-1">
+            <button id="btnC">°C</button>
+          </div>
+          <div class="col-1">
+            <button id="btnF">°F</button>
+          </div>
+      </div>
+      <hr />
+      <br />
       <div class="overview">
       <h1 id="city">
         Altendorf
@@ -49,10 +59,7 @@
             />
             <div class="float-left">
               <strong id="temp">15</strong> 
-              <span class="units">
-                  <a href="#" id="celsius" class="active">°C</a> |
-                  <a href="#" id="fahrenheit">°F</a>
-              </span>
+              <span id="unita">°C</span>
             </div><!-- float-left-->
             </div><!-- clearfix-->
         </div><!-- col6-->
@@ -74,6 +81,7 @@
     <div class="row weather-forecast" id="forecast"></div>
     <h4>Forecast for the next 5 days at 13:00</h4>
     <div class="row weather-days" id="forecast-days"></div>
+    <h6>Temperatures in °C for forecasts</h6>
     </div><!-- my-app -->
     <a href="" target="_blank">source code</a> by MJ
     </div><!-- my-app wrapper-->
