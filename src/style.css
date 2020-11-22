@@ -14,6 +14,12 @@ body {
 	border: 2px solid #888888;
 	border-radius: 5px;
 	margin-bottom: 10px;
+	background: rgb(238, 174, 202);
+	background: linear-gradient(
+		147deg,
+		rgba(238, 174, 202, 1) 0%,
+		rgba(238, 240, 242, 1) 100%
+	);
 }
 h1 {
 	color: #858585;

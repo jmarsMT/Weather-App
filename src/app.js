@@ -66,5 +66,6 @@ function handleSubmit(event){
 search("Freienbach")<!-- DEFAULT CITY-->
 
 
+
 let form=document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
