@@ -36,6 +36,7 @@ function displayCurrentWeather(response){
     let humidityElement=document.querySelector("#humidity");
     let windElement=document.querySelector("#wind");
     let dateElement=document.querySelector("#date");
+    let iconElement=document.querySelector("#icon")
     console.log(dateElement);
     console.log(descElement);
     console.log(formatDate(response.data.dt * 1000));
@@ -45,12 +46,13 @@ function displayCurrentWeather(response){
     humidityElement.innerHTML=response.data.main.humidity;
     windElement.innerHTML=Math.round(response.data.wind.speed);
     dateElement.innerHTML="Last updated: "+ formatDate(response.data.dt * 1000);
-    //formatDate(response.data.dt * 1000);
+    iconElement.setAttribute("src",`http://openweathermap.org/img/wn/${response.data.weather[0].icon}@2x.png`);
 }
 
 
 let apiKey="a22b7ad6acc07bc299f05b8bfe2089f5";
-let apiUrl=`https://api.openweathermap.org/data/2.5/weather?q=London&appid=${apiKey}&units=metric`;
+let city="Freienbach";
+let apiUrl=`https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apiKey}&units=metric`;
 console.log(apiUrl)
 
 axios.get(apiUrl).then(displayCurrentWeather)
