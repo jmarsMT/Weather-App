@@ -127,5 +127,5 @@ celsiusLink.addEventListener("click", displayCelsiusTemperature);
 let form=document.querySelector("#search-form");
 form.addEventListener("submit", handleSubmit);
 
-search("Cadro");
+search("Altendorf");
 //cTemp=document.querySelector("#temp")
