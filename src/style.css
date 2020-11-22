@@ -12,7 +12,7 @@ body {
 	margin: 40px auto;
 	padding: 25px;
 	border: 2px solid #888888;
-	border-radius: 5px;
+	border-radius: 10px;
 	margin-bottom: 10px;
 	background: rgb(238, 174, 202);
 	background: linear-gradient(
@@ -121,15 +121,18 @@ h4 {
 #btnC {
 	background-color: rgb(120, 136, 243);
 	color: #4a4a4a;
+	border-radius: 4px;
 }
 #btnF {
 	background-color: rgb(120, 136, 243);
 	color: #4a4a4a;
+	border-radius: 4px;
 }
 
 .btc-Search {
 	background-color: rgb(120, 136, 243);
 	color: #4a4a4a;
+	border-radius: 4px;
 }
 #unita {
 	vertical-align: top;
